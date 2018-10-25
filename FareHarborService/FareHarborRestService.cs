@@ -24,6 +24,32 @@ namespace FareHarborService
             return jsonCompanies.companies;
         }
 
+        public CompanyDetail GetCompany(string companyShortName)
+        {
+            var route = $"companies/{companyShortName}/";
+
+            var rawResp = CallFareHarbor(route, "GET");
+
+            var jsonCompany = JsonConvert.DeserializeObject<CompanyDetail>(JObject.Parse(rawResp)["company"].ToString());
+
+            return jsonCompany;
+        }
+        
+        public List<Item> GetComanyItems(string companyShortName)
+        {
+            var route = $"companies/{companyShortName}/items/";
+
+            var rawResp = CallFareHarbor(route, "GET");
+
+            var jsonItems = JsonConvert.DeserializeObject<Items>(rawResp);
+
+            return jsonItems.items;
+        }
+
+
+
+
+
 
         /// <summary>
         /// Generic caller to the FareHarbor REST service.
