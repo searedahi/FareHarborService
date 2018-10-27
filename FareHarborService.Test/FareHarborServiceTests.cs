@@ -1,5 +1,4 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FareHarborService;
 using System.Linq;
 
 namespace FareHarborService.Test
@@ -32,7 +31,7 @@ namespace FareHarborService.Test
 
             //Assert
             Assert.IsNotNull(companyDetails);
-            Assert.IsFalse(string.IsNullOrEmpty(companyDetails.about_safe_html));
+            Assert.IsFalse(string.IsNullOrEmpty(companyDetails.Description));
         }
 
         [TestMethod]

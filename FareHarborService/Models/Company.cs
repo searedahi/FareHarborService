@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace FareHarborService.Models
+﻿namespace FareHarborService.Models
 {
     public class Company
     {
