@@ -32,6 +32,7 @@ namespace FareHarborService.Test
             //Assert
             Assert.IsNotNull(companyDetails);
             Assert.IsFalse(string.IsNullOrEmpty(companyDetails.Description));
+            Assert.IsNotNull(companyDetails.Address);
         }
 
         [TestMethod]
@@ -46,6 +47,7 @@ namespace FareHarborService.Test
             //Assert
             Assert.IsNotNull(items);
             Assert.IsTrue(items.Any());
+            Assert.AreNotEqual(0, items.Select(i => i.Locations).ToList());
         }
     }
 }
