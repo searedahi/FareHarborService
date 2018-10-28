@@ -14,6 +14,7 @@ namespace FareHarborService.Models
         public string cancellation_policy { get; set; }
         public string cancellation_policy_safe_html { get; set; }
         public string location { get; set; }
+        public decimal tax_percentage { get; set; }
         public IList<LocationInfo> locations { get; set; }
         public string image_cdn_url { get; set; }
         public bool is_pickup_ever_available { get; set; }
