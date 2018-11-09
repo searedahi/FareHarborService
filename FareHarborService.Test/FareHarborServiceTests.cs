@@ -21,7 +21,7 @@ namespace FareHarborService.Test
         }
 
         [TestMethod]
-        public void GetCompany_CompanyDetailsReturned()
+        public void GetCompany_DetailsReturned()
         {
             //Assemble
             var fareHarborService = FareHarborRestServiceFactory.CreateFareHarborRestService();
@@ -31,7 +31,7 @@ namespace FareHarborService.Test
 
             //Assert
             Assert.IsNotNull(companyDetails);
-            Assert.IsFalse(string.IsNullOrEmpty(companyDetails.Description));
+            Assert.IsFalse(string.IsNullOrEmpty(companyDetails.About));
             Assert.IsNotNull(companyDetails.Address);
         }
 
@@ -48,6 +48,66 @@ namespace FareHarborService.Test
             Assert.IsNotNull(items);
             Assert.IsTrue(items.Any());
             Assert.AreNotEqual(0, items.Select(i => i.Locations).ToList());
+        }
+
+        [TestMethod]
+        public void GetCompanyAgents_ListOfAgentsReturned()
+        {
+            //Assemble
+            var fareHarborService = FareHarborRestServiceFactory.CreateFareHarborRestService();
+
+            //Act 
+            var items = fareHarborService.GetComanyAgents("bodyglove");
+
+            //Assert
+            Assert.IsNotNull(items);
+            Assert.IsTrue(items.Any());
+            Assert.AreNotEqual(0, items.ToList());
+        }
+
+        [TestMethod]
+        public void GetCompanyDesks_ListOfDesksReturned()
+        {
+            //Assemble
+            var fareHarborService = FareHarborRestServiceFactory.CreateFareHarborRestService();
+
+            //Act 
+            var items = fareHarborService.GetComanyDesks("bodyglove");
+
+            //Assert
+            Assert.IsNotNull(items);
+            Assert.IsTrue(items.Any());
+            Assert.AreNotEqual(0, items.ToList());
+        }
+
+        [TestMethod]
+        public void GetCompanyLodgings_ListOfLodgingsReturned()
+        {
+            //Assemble
+            var fareHarborService = FareHarborRestServiceFactory.CreateFareHarborRestService();
+
+            //Act 
+            var items = fareHarborService.GetComanyLodgings("bodyglove");
+
+            //Assert
+            Assert.IsNotNull(items);
+            Assert.IsTrue(items.Any());
+            Assert.AreNotEqual(0, items.ToList());
+        }
+
+        [TestMethod]
+        public void GetExperienceAvailabilities_ListOfAvailabilitiesReturned()
+        {
+            //Assemble
+            var fareHarborService = FareHarborRestServiceFactory.CreateFareHarborRestService();
+
+            //Act 
+            var items = fareHarborService.GetComanyLodgings("bodyglove");
+
+            //Assert
+            Assert.IsNotNull(items);
+            Assert.IsTrue(items.Any());
+            Assert.AreNotEqual(0, items.ToList());
         }
     }
 }
