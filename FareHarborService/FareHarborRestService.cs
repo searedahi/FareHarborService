@@ -13,7 +13,7 @@ namespace FareHarborService
         private IFareHarborConfig fareHarborConfig;
         private IMapper mapper;
 
-        public MapperConfiguration ObjectMapper
+        public MapperConfiguration FareHarborMapper
         {
             get
             {
@@ -39,7 +39,7 @@ namespace FareHarborService
         public FareHarborRestService(IFareHarborConfig fareHarborConfiguration)
         {
             fareHarborConfig = fareHarborConfiguration;
-            mapper = ObjectMapper.CreateMapper();
+            mapper = FareHarborMapper.CreateMapper();
         }
 
         public IList<Travel.Models.ICompany> GetCompanies()
@@ -161,7 +161,7 @@ namespace FareHarborService
         
         public IList<Travel.Models.IAvailability> GetExperienceAvailabilities(string companyShortName, int experiencePk, DateTime targetDate)
         {
-            var formattedDate = targetDate.ToString("yyyy-mm-dd");
+            var formattedDate = targetDate.ToString("yyyy-MM-dd");
 
             var route = $"companies/{companyShortName}/items/{experiencePk}/minimal/availabilities/date/{formattedDate}/";
 
@@ -180,8 +180,8 @@ namespace FareHarborService
 
         public IList<Travel.Models.IAvailability> GetExperienceAvailabilities(string companyShortName, int experiencePk, DateTime startDate, DateTime endDate)
         {
-            var formattedStartDate = startDate.ToString("yyyy-mm-dd");
-            var formattedEndDate = endDate.ToString("yyyy-mm-dd");
+            var formattedStartDate = startDate.ToString("yyyy-MM-dd");
+            var formattedEndDate = endDate.ToString("yyyy-MM-dd");
 
             var route = $"companies/{companyShortName}/items/{experiencePk}/minimal/availabilities/date-range/{formattedStartDate}/{formattedEndDate}/";
 

@@ -11,6 +11,5 @@ namespace FareHarborService.Models
         public int capacity { get; set; }
         public CustomerPrototype customer_prototype { get; set; }
         public CustomerType customer_type { get; set; }
-
     }
 }

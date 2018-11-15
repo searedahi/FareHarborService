@@ -1,5 +1,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using Travel.Models;
 
 namespace FareHarborService.Test
 {
@@ -96,7 +99,7 @@ namespace FareHarborService.Test
         }
 
         [TestMethod]
-        public void GetExperienceAvailabilities_ListOfAvailabilitiesReturned()
+        public void GetCompanyLodgingAvailabilities_ListOfAvailabilitiesReturned()
         {
             //Assemble
             var fareHarborService = FareHarborRestServiceFactory.CreateFareHarborRestService();
@@ -109,5 +112,45 @@ namespace FareHarborService.Test
             Assert.IsTrue(items.Any());
             Assert.AreNotEqual(0, items.ToList());
         }
+
+        [TestMethod]
+        public void GetCompanyExperienceAvailabilities_ListOfAvailabilitiesReturned()
+        {
+            //Assemble
+            var fareHarborService = FareHarborRestServiceFactory.CreateFareHarborRestService();
+                                 
+            var experiencesinDb = new List<int> { 183, 1186, 1187, 1188, 1355, 12252 };
+
+            //Act 
+            var items = new List<IAvailability>();
+
+            foreach (var id in experiencesinDb)
+            {
+                var foundOne = false;
+                DateTime targetDt = DateTime.Now;
+
+                while (!foundOne && targetDt < DateTime.Now.AddDays(30))
+                {
+                    var rres = fareHarborService.GetExperienceAvailabilities("bodyglove", id, targetDt);
+                    if (rres.Any())
+                    {
+                        foundOne = true;
+                        items.AddRange(rres);
+                    }
+
+                    targetDt = targetDt.AddDays(1);
+                }
+            }
+
+            //Assert
+            Assert.IsNotNull(items);
+            Assert.IsTrue(items.Any());
+            Assert.AreNotEqual(0, items.ToList());
+        }
+
+
+
+
+
     }
 }
